@@ -33,7 +33,7 @@ askForRange:
 	arg, err := strconv.Atoi(rngInput)
 
 	if err != nil {
-		red(os.Stderr, "error: \"%v\" is not a number.\n", rngInput)
+		red(os.Stderr, "error: \"%v\" is not a valid number.\n", rngInput)
 		goto askForRange
 	}
 
@@ -45,7 +45,7 @@ askForAttempts:
 	attemptsConverted, err := strconv.Atoi(attempts)
 
 	if err != nil {
-		red(os.Stderr, "error: \"%v\" is not a number.\n", attempts)
+		red(os.Stderr, "error: \"%v\" is not a valid number.\n", attempts)
 		goto askForAttempts
 	}
 
@@ -58,7 +58,7 @@ askForAttempts:
 
 		if err != nil {
 			tries--
-			color.Red("Error, Please enter a number instead of letter(s)")
+			red(os.Stderr, "error: \"%v\" is not a valid number.\n", gss)
 			continue
 		}
 
@@ -67,7 +67,7 @@ askForAttempts:
 		} else if guess > rand {
 			color.Yellow("Oops. Your guess was too HIGH.")
 		} else {
-			color.Green("\n\nYou guessed the number!, The number was %v.\n", rand)
+			color.Green("\n\nYou guessed the number!, The number was %v.", rand)
 			os.Exit(0)
 		}
 	}
